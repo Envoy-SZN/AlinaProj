@@ -3,40 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valentine Invite</title>
+  <title>Why You Should Be My Valentine</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #ffe6ef;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: #ffb6c1;
+      overflow: hidden;
       height: 100vh;
+    }
+
+    /* Floating hearts */
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
       overflow: hidden;
     }
 
+    .floating-heart {
+      position: absolute;
+      bottom: -50px;
+      animation: floatUp linear infinite;
+      opacity: 0.9;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.95);
       padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       text-align: center;
-      max-width: 400px;
+      max-width: 500px;
       width: 90%;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
     }
 
     h1 {
       font-size: 1.8rem;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 250px;
+      border-radius: 12px;
+      margin-bottom: 20px;
     }
 
     .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
       position: relative;
+      width: 220px;
+      height: 50px;
+      margin-top: 10px;
     }
 
     button {
@@ -45,60 +102,164 @@
       border-radius: 999px;
       border: none;
       cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .next-btn {
+      background-color: #ff5c8a;
+      color: white;
     }
 
     .yes-btn {
       background-color: #ff5c8a;
       color: white;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
     }
 
     .no-btn {
       background-color: #ddd;
       color: #555;
       position: absolute;
+      inset: 0; /* Starts exactly on top of Yes */
+      z-index: 2;
     }
 
-    /* Second screen */
-    .yay-screen {
-      display: none;
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 20px;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .yay-screen img {
-      max-width: 250px;
-      border-radius: 12px;
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 1;
     }
 
-    .yay-text {
-      font-size: 1.5rem;
+    .slide.exit-left {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    .no-message {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: #ff3b6f;
+      min-height: 1.2em;
     }
   </style>
 </head>
 <body>
-  <div class="card" id="question-card">
-    <h1>Alina, will you be my Valentine?</h1>
-    <div class="buttons">
-      <button class="yes-btn" id="yesBtn">Yes</button>
-      <button class="no-btn" id="noBtn">No</button>
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <div class="container">
+    <div class="card">
+
+      <!-- Slide 1 -->
+      <div class="slide active" id="slide-1">
+        <h1>Why YOU should pick me as your Valentine 💖</h1>
+        <img src="slide1-image.gif" alt="Slide 1 Image" />
+        <button class="next-btn" onclick="nextSlide()">Next</button>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" id="slide-2">
+        <h1>Your custom text here ✨</h1>
+        <img src="slide2-image.gif" alt="Slide 2 Image" />
+        <button class="next-btn" onclick="nextSlide()">Next</button>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide" id="slide-3">
+        <h1>Your custom text here 💕</h1>
+        <img src="slide3-image.gif" alt="Slide 3 Image" />
+        <button class="next-btn" onclick="nextSlide()">Next</button>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="slide" id="slide-4">
+        <h1>Your custom text here 💌</h1>
+        <img src="slide4-image.gif" alt="Slide 4 Image" />
+        <button class="next-btn" onclick="nextSlide()">Next</button>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="slide" id="slide-5">
+        <h1>Your custom text here 🌹</h1>
+        <img src="slide5-image.gif" alt="Slide 5 Image" />
+        <button class="next-btn" onclick="nextSlide()">Final Slide</button>
+      </div>
+
+      <!-- Final Slide -->
+      <div class="slide" id="slide-6">
+        <h1>So Alina, will you be my Valentine? 💘</h1>
+        <div class="buttons">
+          <button class="yes-btn" id="yesBtn">Yes</button>
+          <button class="no-btn" id="noBtn">No</button>
+        </div>
+        <div class="no-message" id="noMessage"></div>
+      </div>
+
+      <!-- Yay Slide -->
+      <div class="slide" id="slide-7">
+        <h1>Yay!!! 🥰</h1>
+        <img src="celebration.gif" alt="Celebration GIF" />
+        <p>I can't wait to spend Valentine's with you 💖</p>
+      </div>
+
     </div>
   </div>
 
-  <div class="card yay-screen" id="yay-card">
-    <div class="yay-text">yippieee</div>
-    <img src="https://media1.tenor.com/m/CarV7GDhiwQAAAAd/yippee-cat.gif" alt="Celebration GIF" />
-    <div class="yay-text">I love you, I can't wait to see you in person and spend time with you</div>
-  </div>
-
   <script>
+    let currentSlide = 1;
+    const totalSlides = 7;
+
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
-    const questionCard = document.getElementById("question-card");
-    const yayCard = document.getElementById("yay-card");
+    const card = document.querySelector(".card");
+    const noMessage = document.getElementById("noMessage");
 
-    function moveNoButton() {
-      const card = document.querySelector(".card");
+    const noMessages = [
+      "no isn't an answer my darling",
+      "you're stuck with me",
+      "not today my love",
+      "i am afraid thats not gonna happen"
+    ];
+
+    let noMessageIndex = 0;
+
+    function nextSlide() {
+      const current = document.getElementById(`slide-${currentSlide}`);
+      current.classList.remove("active");
+      current.classList.add("exit-left");
+
+      currentSlide++;
+      const next = document.getElementById(`slide-${currentSlide}`);
+      next.classList.add("active");
+
+      if (currentSlide === 6) {
+        positionNoButtonOverYes();
+      }
+    }
+
+    function positionNoButtonOverYes() {
+      noBtn.style.left = "0px";
+      noBtn.style.top = "0px";
+    }
+
+    function moveNoButtonRandomly() {
       const cardRect = card.getBoundingClientRect();
 
       const maxX = cardRect.width - noBtn.offsetWidth;
@@ -109,18 +270,50 @@
 
       noBtn.style.left = `${randomX}px`;
       noBtn.style.top = `${randomY}px`;
+
+      noMessage.textContent = noMessages[noMessageIndex];
+      noMessageIndex = (noMessageIndex + 1) % noMessages.length;
     }
 
-    noBtn.addEventListener("mouseenter", moveNoButton);
-    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("click", moveNoButtonRandomly);
+    noBtn.addEventListener("mouseenter", moveNoButtonRandomly);
 
     yesBtn.addEventListener("click", () => {
-      questionCard.style.display = "none";
-      yayCard.style.display = "flex";
+      const current = document.getElementById(`slide-${currentSlide}`);
+      current.classList.remove("active");
+      current.classList.add("exit-left");
+
+      const yaySlide = document.getElementById("slide-7");
+      yaySlide.classList.add("active");
     });
 
-    // Initial random position for the No button
-    moveNoButton();
+    /* Floating hearts generator */
+    const heartsContainer = document.getElementById("floatingHearts");
+    const heartEmojis = ["❤️", "💖", "💕", "💗", "💘", "💓", "🌹", "✨"];
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+      const size = Math.random() * 20 + 15;
+      const duration = Math.random() * 5 + 6;
+      const delay = Math.random() * 2;
+      const left = Math.random() * 100;
+
+      heart.style.fontSize = `${size}px`;
+      heart.style.left = `${left}%`;
+      heart.style.animationDuration = `${duration}s`;
+      heart.style.animationDelay = `${delay}s`;
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, (duration + delay) * 1000);
+    }
+
+    setInterval(createHeart, 500);
   </script>
 </body>
 </html>
