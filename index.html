@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why You Should Be My Valentine</title>
+  <title>why you should make ME your valentine</title>
   <style>
     body {
       margin: 0;
@@ -85,24 +85,30 @@
 
     img {
       max-width: 250px;
+      max-height: 220px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       border-radius: 12px;
       margin-bottom: 20px;
     }
 
     .buttons {
       position: relative;
-      width: 220px;
-      height: 50px;
+      width: 260px;
+      height: 60px;
       margin-top: 10px;
     }
 
     button {
       font-size: 1rem;
-      padding: 12px 24px;
+      padding: 12px 26px;
       border-radius: 999px;
       border: none;
       cursor: pointer;
       transition: transform 0.2s ease, background-color 0.2s ease;
+      position: absolute;
+      top: 0;
     }
 
     button:hover {
@@ -110,6 +116,7 @@
     }
 
     .next-btn {
+      position: static;
       background-color: #ff5c8a;
       color: white;
     }
@@ -117,17 +124,15 @@
     .yes-btn {
       background-color: #ff5c8a;
       color: white;
-      position: absolute;
-      inset: 0;
+      left: 0;
       z-index: 1;
     }
 
     .no-btn {
       background-color: #ddd;
       color: #555;
-      position: absolute;
-      inset: 0; /* Starts exactly on top of Yes */
-      z-index: 2;
+      left: 130px;
+      z-index: 2; /* Must be on top */
     }
 
     .slide {
@@ -158,6 +163,7 @@
       font-size: 0.95rem;
       color: #ff3b6f;
       min-height: 1.2em;
+      text-align: center;
     }
   </style>
 </head>
@@ -169,42 +175,56 @@
 
       <!-- Slide 1 -->
       <div class="slide active" id="slide-1">
-        <h1>Why YOU should pick me as your Valentine 💖</h1>
-        <img src="slide1-image.gif" alt="Slide 1 Image" />
+        <h1>here are some reasons why you should make me your valentine</h1>
+        <img src="https://media1.tenor.com/m/b379bFJGgYYAAAAC/pingu-begging.gif" alt="Slide 1 Image" />
         <button class="next-btn" onclick="nextSlide()">Next</button>
       </div>
 
       <!-- Slide 2 -->
       <div class="slide" id="slide-2">
-        <h1>Your custom text here ✨</h1>
-        <img src="slide2-image.gif" alt="Slide 2 Image" />
+        <h1>1. i would let u beat me ✨</h1>
+        <img src="https://media1.tenor.com/m/Rukf_ikrukgAAAAC/happy-super-happy.gif" alt="Slide 2 Image" />
         <button class="next-btn" onclick="nextSlide()">Next</button>
       </div>
 
       <!-- Slide 3 -->
       <div class="slide" id="slide-3">
-        <h1>Your custom text here 💕</h1>
-        <img src="slide3-image.gif" alt="Slide 3 Image" />
+        <h1>2. i would try my hardest to go 1 day without making u mad 💕</h1>
+        <img src="https://cdn.discordapp.com/attachments/751792332646645885/1240752733439660113/IMG_1185.png?ex=698ed747&is=698d85c7&hm=e3f83f74305e318d2fa3ea400f09eedf55507b4f1001c5333ad74481bd8614f9&" alt="Slide 3 Image" />
         <button class="next-btn" onclick="nextSlide()">Next</button>
       </div>
 
       <!-- Slide 4 -->
       <div class="slide" id="slide-4">
-        <h1>Your custom text here 💌</h1>
-        <img src="slide4-image.gif" alt="Slide 4 Image" />
+        <h1>3. i would play OW with u 💌</h1>
+        <img src="https://media1.tenor.com/m/JZcTfM6gGKoAAAAC/minion-black.gif" alt="Slide 4 Image" />
         <button class="next-btn" onclick="nextSlide()">Next</button>
       </div>
 
       <!-- Slide 5 -->
       <div class="slide" id="slide-5">
-        <h1>Your custom text here 🌹</h1>
-        <img src="slide5-image.gif" alt="Slide 5 Image" />
-        <button class="next-btn" onclick="nextSlide()">Final Slide</button>
+        <h1>4. we could raise 500 cats 🐈🐈 (and they could facetime like this)</h1>
+        <img src="https://i.ibb.co/tpqrDxBD/facetime.jpg" alt="Slide 5 Image" />
+        <button class="next-btn" onclick="nextSlide()">Next</button>
       </div>
 
-      <!-- Final Slide -->
+      <!-- New Slide 6 -->
       <div class="slide" id="slide-6">
-        <h1>So Alina, will you be my Valentine? 💘</h1>
+        <h1>YOOO WAIT A MINUTE WHY ARE WE SO FUCKING TUFFF</h1>
+        <img src="https://tr.rbxcdn.com/180DAY-dea659fc729b5f8550e06d83747c0edd/150/150/Image/Webp/noFilter" alt="Slide 6 Image" />
+        <button class="next-btn" onclick="nextSlide()">Next</button>
+      </div>
+
+      <!-- New Slide 7 -->
+      <div class="slide" id="slide-7">
+        <h1>5. i would make phone calls for u (this is me telling the doctor u have aids) ❤️</h1>
+        <img src="https://media1.tenor.com/m/e-J8oTNjGvEAAAAC/winston-winton.gif" alt="Slide 7 Image" />
+        <button class="next-btn" onclick="nextSlide()">Next</button>
+      </div>
+
+      <!-- Original Final Slide becomes Slide 8 -->
+      <div class="slide" id="slide-8">
+        <h1>So, will you be my valentine?</h1>
         <div class="buttons">
           <button class="yes-btn" id="yesBtn">Yes</button>
           <button class="no-btn" id="noBtn">No</button>
@@ -212,11 +232,11 @@
         <div class="no-message" id="noMessage"></div>
       </div>
 
-      <!-- Yay Slide -->
-      <div class="slide" id="slide-7">
-        <h1>Yay!!! 🥰</h1>
-        <img src="celebration.gif" alt="Celebration GIF" />
-        <p>I can't wait to spend Valentine's with you 💖</p>
+      <!-- Yay Slide becomes Slide 9 -->
+      <div class="slide" id="slide-9">
+        <h1>I HAVE NO WAY OF KNOWING IF YOU CLICKED YES BUT LETS GOOOO</h1>
+        <img src="https://media1.tenor.com/m/RiZpodi6JD0AAAAC/fast-cat-cat-excited.gif" alt="Celebration GIF" />
+        <p>two years later and i'm still falling in love with you. truly grateful i still have the privilege to ask you to be my valentine, and i'll never take that for granted. i love you more than you could ever imagine  </p>
       </div>
 
     </div>
@@ -224,11 +244,11 @@
 
   <script>
     let currentSlide = 1;
-    const totalSlides = 7;
+    const totalSlides = 9;
 
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
-    const card = document.querySelector(".card");
+    const buttonsBox = document.querySelector(".buttons");
     const noMessage = document.getElementById("noMessage");
 
     const noMessages = [
@@ -249,21 +269,22 @@
       const next = document.getElementById(`slide-${currentSlide}`);
       next.classList.add("active");
 
-      if (currentSlide === 6) {
-        positionNoButtonOverYes();
+      if (currentSlide === 8) {
+        resetNoButton();
       }
     }
 
-    function positionNoButtonOverYes() {
-      noBtn.style.left = "0px";
+    function resetNoButton() {
+      noBtn.style.left = "130px";
       noBtn.style.top = "0px";
     }
 
     function moveNoButtonRandomly() {
-      const cardRect = card.getBoundingClientRect();
+      const boxRect = buttonsBox.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
 
-      const maxX = cardRect.width - noBtn.offsetWidth;
-      const maxY = cardRect.height - noBtn.offsetHeight;
+      const maxX = boxRect.width - btnRect.width;
+      const maxY = boxRect.height - btnRect.height;
 
       const randomX = Math.random() * maxX;
       const randomY = Math.random() * maxY;
@@ -275,7 +296,6 @@
       noMessageIndex = (noMessageIndex + 1) % noMessages.length;
     }
 
-    noBtn.addEventListener("click", moveNoButtonRandomly);
     noBtn.addEventListener("mouseenter", moveNoButtonRandomly);
 
     yesBtn.addEventListener("click", () => {
@@ -283,7 +303,7 @@
       current.classList.remove("active");
       current.classList.add("exit-left");
 
-      const yaySlide = document.getElementById("slide-7");
+      const yaySlide = document.getElementById("slide-9");
       yaySlide.classList.add("active");
     });
 
