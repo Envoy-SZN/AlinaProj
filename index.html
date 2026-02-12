@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine Invite</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffe6ef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    button {
+      font-size: 1rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .yes-btn {
+      background-color: #ff5c8a;
+      color: white;
+    }
+
+    .no-btn {
+      background-color: #ddd;
+      color: #555;
+      position: absolute;
+    }
+
+    /* Second screen */
+    .yay-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .yay-screen img {
+      max-width: 250px;
+      border-radius: 12px;
+    }
+
+    .yay-text {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="question-card">
+    <h1>Alina, will you be my Valentine? 💖</h1>
+    <div class="buttons">
+      <button class="yes-btn" id="yesBtn">Yes</button>
+      <button class="no-btn" id="noBtn">No</button>
+    </div>
+  </div>
+
+  <div class="card yay-screen" id="yay-card">
+    <div class="yay-text">Yay!!! 🥰</div>
+    <img src="https://media1.tenor.com/m/CarV7GDhiwQAAAAd/yippee-cat.gif" alt="Celebration GIF" />
+    <div class="yay-text">I love you, I can't wait to see you in person and spend time with you</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const questionCard = document.getElementById("question-card");
+    const yayCard = document.getElementById("yay-card");
+
+    function moveNoButton() {
+      const card = document.querySelector(".card");
+      const cardRect = card.getBoundingClientRect();
+
+      const maxX = cardRect.width - noBtn.offsetWidth;
+      const maxY = cardRect.height - noBtn.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      questionCard.style.display = "none";
+      yayCard.style.display = "flex";
+    });
+
+    // Initial random position for the No button
+    moveNoButton();
+  </script>
+</body>
+</html>
